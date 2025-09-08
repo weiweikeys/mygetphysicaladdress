@@ -345,7 +345,7 @@ int main() {
 ```
 
 ### Q1 result
-![螢幕擷取畫面 2024-11-05 135002](https://hackmd.io/_uploads/r1QmzVP-kg.png)
+![Image](https://github.com/user-attachments/assets/dea30777-8f1c-4d3b-af96-4c4e11307eb3)
 
 * PID：pid=1295是Parent Process的pid，表示目前運行的 Parent Process。
 * PID：pid=1296是Child Process的pid。
