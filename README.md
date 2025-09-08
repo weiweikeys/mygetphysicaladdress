@@ -1,9 +1,4 @@
----
-title: Linux作業系統 Project1:my_get_physical_addresses&verify_lazy_allocation
-
----
-
-# ****Linux作業系統 Project1:my_get_physical_addresses&verify_lazy_allocation****
+# ****Linux作業系統Project1:my_get_physical_addresses&verify_lazy_allocation****
 
 
 ## 建立system call
@@ -13,6 +8,7 @@ title: Linux作業系統 Project1:my_get_physical_addresses&verify_lazy_allocati
 mkdir my_get_physical_addresses
 ```
 ![image](https://hackmd.io/_uploads/S1kEzvw-ye.png)
+
 2.進入所建的資料夾
 ```
 cd my_get_physical_addresses
@@ -147,13 +143,16 @@ https://elixir.bootlin.com/linux/v5.15.137/source/arch/x86/include/asm/current.h
 * (3)
 https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/sched.h#L758
 這個連結可以知道task_struct結構裡面有mm_struct
+
 ![image](https://hackmd.io/_uploads/HJ2a4UD-1x.png)
+
 
 
 **進入mm找以下連結:**
 https://elixir.bootlin.com/linux/v5.15.137/source/include/linux/mm_types.h#L779
 找到pgd_t *pgd;
 ![image](https://hackmd.io/_uploads/B1zBv8P-Jl.png)
+
 
 **進入pgd 找到以下兩個連結:**
 ![image](https://hackmd.io/_uploads/B1WviUvW1e.png)
@@ -217,33 +216,20 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/asm-generic/memory_mod
 所以要加上這個偏移以求精確。
 
 
-
-
----
-
-
----
-
-
----
-
-
----
-
-
----
-
-
 ---
 
 5.編輯完my_get_physical_addresses.c程式碼保存並退出
 在my_get_physical_addresses的資料夾下建立Makefile
 建立完並編輯，內容為:
+
 ![image](https://hackmd.io/_uploads/SkXpNvPZ1x.png)
 
 6.回到linux-5.15.137並編輯Makefile
+
 ![image](https://hackmd.io/_uploads/ByIuHwP-ye.png)
+
 找到core-y並在最後面新增my_get_physical_addresses
+
 ![image](https://hackmd.io/_uploads/SJxl8wPWyg.png)
 
 7.在syscall_64.tbl中添加新的systemcall
@@ -615,11 +601,13 @@ int main() {
 
 當我們將"1"這個值存到a[1008]時
 可以看到a[1008]就被分配到實體記憶體空間了:
+
 ![image](https://hackmd.io/_uploads/rkRHxlabkg.png)
 
 
 
 一直分配直到a[2032]才沒有被分配到:
+
 ![image](https://hackmd.io/_uploads/B1Nrkga-yg.png)
 
 ```C++=
@@ -708,7 +696,6 @@ int main() {
 ### What is Systemcall?
 
 
----
 
 在 Linux 系統中，系統呼叫（System Call）是應用程式與作業系統內核（Kernel）之間的一種介面，讓應用程式可以向內核請求執行特定的操作，例如檔案操作、網路通訊、記憶體管理、進程控制等。由於內核掌控了系統資源的管理與安全性，應用程式無法直接存取這些資源，必須透過系統呼叫來請求內核幫助完成。
 
@@ -732,7 +719,6 @@ exit()：結束程式
 ### What is Task_struct?
 
 
----
 
 task_struct 是 Linux 核心中用來表示每個process的資料結構，它包含了進程控制塊（PCB）中所有用於管理和排程進程的關鍵資訊。根據你列出的理論架構，這些要素確實是 task_struct 的核心組成部分。以下是每個欄位在 task_struct 中的作用說明：
 
@@ -766,7 +752,6 @@ task_struct 是 Linux 核心中用來表示每個process的資料結構，它包
 
 
 
----
 current 宏是 Linux 核心中一個非常重要的指針，它指向當前進程的 task_struct 結構體。這個宏可以用來快速訪問和操作當前執行的進程資訊。例如：
 
 (1)current->pid 用來獲取當前進程的 PID。
@@ -783,7 +768,6 @@ current 宏是 Linux 核心中一個非常重要的指針，它指向當前進�
 mm_struct 結構體在 Linux 核心中描述了一個process的整個虛擬位址空間。它包含了有關process記憶體管理的所有資訊，包括該process如何使用虛擬記憶體，以及各個段（如 程式碼段 code segment、堆 heap、棧 stack 等）的位址範圍。
 
 
----
 
 以下是 mm_struct 的一些主要欄位：
 
@@ -810,7 +794,6 @@ mm_struct 結構體在 Linux 核心中描述了一個process的整個虛擬位�
 ### What is thread?
 
 
----
 
 thread 是指比 Process 更輕量的執行單元。最大的不同在於 thread 共享同一個 Process 的資源（Memory space、File descriptor…等），但它們有各自的 stack、program counter 和 register。多個 thread 可以同時在一個 process 中運行。thread 通過共享 process 的資源來提高運行效率與並行處理能力，適合需要同時處理多重任務的應用程式中。
 
@@ -821,7 +804,6 @@ thread 是指比 Process 更輕量的執行單元。最大的不同在於 thread
 ### 造成 Page Fault 的原因
 
 
----
 
 當虛擬記憶體與實體記憶體之間尚未建立映射關係時，CPU 無法存取對應的實體記憶體，這時就會發生分頁錯誤（Page Fault）。
 
@@ -836,7 +818,6 @@ thread 是指比 Process 更輕量的執行單元。最大的不同在於 thread
 
 ### copy_to_user 和 copy_from_user
 
----
 
 優點:
 (1)安全性：能防止使用者空間對核心空間的非法存取，因為它們會檢查記憶體的有效性，以避免存取到無效的或未分配的記憶體區域。
@@ -853,7 +834,7 @@ thread 是指比 Process 更輕量的執行單元。最大的不同在於 thread
 
 ### bss segment和data segment
 
----
+
 data segment:存放已經有明確初始化的 global 和 static 變數，當程式被讀進記憶體中時，這些值就會從執行檔被讀入。
 
 bss segment:包含未明確初始的global 和 static 變數，當執行程式時會將其這區段的記憶體初始為零。
@@ -863,7 +844,7 @@ bss segment:包含未明確初始的global 和 static 變數，當執行程式�
 
 ### zombie process
 
----
+
 
 當子程序（child process）結束後，它的狀態會變成 "殭屍程序"（zombie process）。此時，子程序的主要資源已釋放，但它的進程描述符（包含退出狀態）仍在，等待parent process來處理。如果parent process沒有即時獲取子程序的退出狀態，子程序就會保留在殭屍狀態。
 
