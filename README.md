@@ -7,20 +7,20 @@
 ```
 mkdir my_get_physical_addresses
 ```
-![image](https://hackmd.io/_uploads/S1kEzvw-ye.png)
+![Image](https://github.com/user-attachments/assets/c2f683e3-0b3a-4f9e-a11f-6607c62af5f1)
 
 2.進入所建的資料夾
 ```
 cd my_get_physical_addresses
 ```
-![image](https://hackmd.io/_uploads/Hy8KzPvbJg.png)
+![Image](https://github.com/user-attachments/assets/4ef6ea7e-19ba-49f9-834b-47b8e6d591d0)
 
 
 3.新增system call
 ```
 touch my_get_physical_addresses.c
 ```
-![image](https://hackmd.io/_uploads/HJeOXwvbkx.png)
+![image](https://github.com/user-attachments/assets/3644919e-227e-4d9b-a18d-9c3e08ca15bf)
 
 4.編輯my_get_physical_addresses.c
 ```
@@ -222,11 +222,11 @@ https://elixir.bootlin.com/linux/v5.15.137/source/include/asm-generic/memory_mod
 在my_get_physical_addresses的資料夾下建立Makefile
 建立完並編輯，內容為:
 
-![image](https://hackmd.io/_uploads/SkXpNvPZ1x.png)
+![Image](https://github.com/user-attachments/assets/c2f683e3-0b3a-4f9e-a11f-6607c62af5f1)
 
 6.回到linux-5.15.137並編輯Makefile
 
-![image](https://hackmd.io/_uploads/ByIuHwP-ye.png)
+![Image](https://github.com/user-attachments/assets/f0f60df1-7257-44d3-a444-aa51c4562171)
 
 找到core-y並在最後面新增my_get_physical_addresses
 
@@ -451,7 +451,7 @@ int main(){
 ```
 
 ### Bonus Result
-![image](https://hackmd.io/_uploads/B16KwquZJe.png)
+![Image](https://github.com/user-attachments/assets/e284eb80-a3c3-4073-bfa8-38f5b92080ee)
 
 * execlp會取代目前執行的代碼，執行新的程式碼，而execlp 是在當前進度上執行另一個程式，並不會創建新的ID，所以pid保持不變。
 * 但執行execlp時系統會重建目前的記憶體空間以載入新程式的檔案，所以logical address會有變化。
